@@ -15,8 +15,8 @@ class FormElementInstaller implements PackageInstallerInterface {
      * @see \Mouf\Installer\PackageInstallerInterface::install()
      */
     public static function install(MoufManager $moufManager) {
-               	// Let's create the renderer
-		RendererUtils::createPackageRenderer($moufManager, "mouf/html.widgets.form-element");
+		// Let's create the renderer
+		RendererUtils::createPackageRenderer($moufManager, "mouf/html.widgets.form-elements");
 
         // Let's rewrite the MoufComponents.php file to save the component
         $moufManager->rewriteMouf();
