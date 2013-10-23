@@ -1,0 +1,42 @@
+{
+	"name" : "mouf/html.widgets.form-elements",
+	"description" : "This package contains PHP objects representing common HTML form elements, along renderers.",
+	"type" : "mouf-library",
+	"authors" : [{
+			"name" : "David Négrier",
+			"email" : "d.negrier@thecodingmachine.com",
+			"homepage" : "http://mouf-php.com"
+		}
+	],
+	"keywords" : [
+		"html",
+		"html5",
+		"tohtml",
+		"interface",
+		"tags"
+	],
+	"homepage" : "http://mouf-php.com/packages/mouf/html.widgets.form-elements",
+	"license" : [
+		"MIT"
+	],
+	"require" : {
+		"php" : ">=5.4.4",
+		"mouf/html.tags" : "~1.0",
+		"mouf/html.renderer" : "~1.0"
+	},
+	"autoload" : {
+		"psr-0" : {
+			"Mouf" : "src/"
+		}
+	},
+	"extra" : {
+		"mouf" : {
+			"logo" : "logo.png",
+			"install" : [{
+					"class" : "Mouf\\Html\\Widgets\\Form\\FormElementInstaller",
+					"type" : "class"
+				}
+			]
+		}
+	}
+}

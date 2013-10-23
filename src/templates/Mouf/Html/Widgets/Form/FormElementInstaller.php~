@@ -1,0 +1,22 @@
+<?php
+namespace Mouf\Html\Widgets\Form;
+
+use Mouf\Installer\PackageInstallerInterface;
+use Mouf\MoufManager;
+
+/**
+ * A logger class that writes messages into the php error_log.
+ */
+class FormElementInstaller implements PackageInstallerInterface {
+
+    /**
+     * (non-PHPdoc)
+     * @see \Mouf\Installer\PackageInstallerInterface::install()
+     */
+    public static function install(MoufManager $moufManager) {
+               	
+
+        // Let's rewrite the MoufComponents.php file to save the component
+        $moufManager->rewriteMouf();
+    }
+}

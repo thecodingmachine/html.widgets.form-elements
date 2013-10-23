@@ -1,0 +1,28 @@
+<?php
+namespace Mouf\Html\Widgets\Form;
+
+use Mouf\Installer\PackageInstallerInterface;
+use Mouf\MoufManager;
+
+/**
+ * A logger class that writes messages into the php error_log.
+ */
+class FormInstaller implements PackageInstallerInterface {
+
+    /**
+     * (non-PHPdoc)
+     * @see \Mouf\Installer\PackageInstallerInterface::install()
+     */
+    public static function install(MoufManager $moufManager) {
+        if (!$moufManager->instanceExists("psr.errorLogLogger")) {
+            $errorLogLogger = $moufManager->createInstance("Mouf\\Utils\\Log\\Psr\\ErrorLogLogger");
+
+            // Let's set a name for this instance (otherwise, it would be anonymous)
+            $errorLogLogger->setName("psr.errorLogLogger");
+            $errorLogLogger->getProperty("level")->setValue('warning');
+        }
+
+        // Let's rewrite the MoufComponents.php file to save the component
+        $moufManager->rewriteMouf();
+    }
+}
