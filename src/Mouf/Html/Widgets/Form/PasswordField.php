@@ -11,12 +11,12 @@ use Mouf\Utils\Value\ValueUtils;
 use Mouf\Html\HtmlElement\HtmlString;
 
 /**
- * A TextField represent a couple of &lt;label&gt; and &lt;input type="text"&gt; fields.
+ * A PasswordField represent a couple of &lt;label&gt; and &lt;input type="text"&gt; fields.
  * This class is "renderable" so you can overload the way label and input fields are displayed.
  * 
  * @author Marc Teyssier <m.teyssier@thecodingmachine.com>
  */
-class TextField extends InputField {
+class PasswordField extends InputField {
 
 	/**
 	 * Constructs the textfield.
@@ -27,7 +27,7 @@ class TextField extends InputField {
 	 */
 	public function __construct($label = null, $name = null, $value = null) {
 		parent::__construct($label, $name, $value);
-		$this->input->setType('text');
+		$this->input->setType('password');
 	}
 	
 }
