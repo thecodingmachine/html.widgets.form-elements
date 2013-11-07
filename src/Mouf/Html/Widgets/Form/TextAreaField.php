@@ -61,7 +61,7 @@ class TextAreaField implements HtmlElementInterface {
 			$this->textarea->setName($name);
 		}
 		if ($value !== null) {
-			$this->textarea->setValue($value);
+			$this->textarea->addText($value);
 		}
 	}
 	

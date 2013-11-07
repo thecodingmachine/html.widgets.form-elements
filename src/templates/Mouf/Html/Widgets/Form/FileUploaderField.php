@@ -1,43 +1,62 @@
 <?php
 /* @var $object Mouf\Html\Widgets\Form\FileUploaderField */
+
+// This display all files already send. If you remove it, the validators required file will not work !
 if($object->getFileList()) {
 	$scriptVals = array();
-	$html = '<table>';
-	$i = 0;
-	foreach ($object->getFileList() as $value) {
-		if($value) {
-			$html .= '<tr class="file-upload-'.$object->getFileUploader()->inputName.'-'.$i.'">';
-				$html .= '<td>';
-					$ext = substr($value, strrpos($value, '.') + 1);
-					$fileUrl = ROOT_URL.str_replace('\\', '/', $value);
-					if($ext == 'jpeg' || $ext == 'jpg' || $ext == 'gif' || $ext == 'png'){
-						$html .= '<img src="'.$fileUrl.'" style="width: 50px; height: 50px" /> (<a href="'.$fileUrl.'">link here</a>)';
-					}else
-						$html .= $value . "(<a href='$fileUrl'>link here</a>)";
-				$html .= '</td>';
-				$html .= '<td>';
-					$html .= '<a href="#" onclick="return removeFileUpload_'.$object->getFileUploader()->inputName.'('.$i.', \''.str_replace('\\', '\\\\', $value).'\')">remove</a>';
-				$html .= '</td>';
-			$html .= '</tr>';
+	?>
+	<table style="clear: both;">
+		<?php
+		$i = 0;
+		foreach ($object->getFileList() as $value) {
+			if($value) {
+				?>
+				<tr class="file-upload-<?php echo $object->getFileUploader()->inputName.'-'.$i?>">
+					<td>
+						<?php
+						$ext = substr($value, strrpos($value, '.') + 1);
+						$fileUrl = ROOT_URL.str_replace('\\', '/', $value);
+						if($ext == 'jpeg' || $ext == 'jpg' || $ext == 'gif' || $ext == 'png'){
+							?>
+							<img src="<?php echo $fileUrl ?>" style="width: 50px; height: 50px" /> (<a href="<?php echo $fileUrl ?>">link here</a>)
+							<?php
+						} else {
+							echo $value;
+							?>
+							(<a href="<?php echo $fileUrl ?>">link here</a>)
+							<?php 
+						}
+						// This input is used to detect if a file is already send
+						?>
+						<input type="hidden" class="has-fileupload-<?php echo $object->getFileUploader()->inputName?>" name="has-fileupload-<?php echo $object->getFileUploader()->inputName?>[]" value="<?php echo $fileUrl ?>" />
+					</td>
+					<td>
+						<?php 
+						// Protect value
+						$valueProtected = str_replace('\\', '\\\\', $value);
+						$valueProtected = str_replace("'", "\\'", $valueProtected);
+						?>
+						<a href="#" onclick="return removeFileUpload_<?php echo $object->getFileUploader()->inputName."(".$i.", '".$valueProtected."')"?>">remove</a>
+					</td>
+				</tr>
+				<?php 
+				$paths = explode(DIRECTORY_SEPARATOR, $value);
+				$scriptVals[ROOT_URL.str_replace(DIRECTORY_SEPARATOR, "/", $value)] = $paths[count($paths) - 1];
 			
-			$paths = explode(DIRECTORY_SEPARATOR, $value);
-			$scriptVals[ROOT_URL.str_replace(DIRECTORY_SEPARATOR, "/", $value)] = $paths[count($paths) - 1];
-			
-			$i ++;
-		}
-	}
-	
-	$html .= '</table>';
-	$html .= '<div id="remove-file-upload-'.$object->getFileUploader()->inputName.'"></div>';
-	$html .= '
-		<script>
-			if (typeof bce_files === "undefined"){
-				bce_files = {};
+				$i ++;
 			}
-			bce_files = $.extend(bce_files, '.json_encode($scriptVals).');
-		</script>';
+		}
+		?>
+	</table>
+	<div id="remove-file-upload-<?php echo $object->getFileUploader()->inputName?>"></div>
+	<script>
+		if (typeof bce_files === "undefined"){
+			bce_files = {};
+		}
+		bce_files = $.extend(bce_files, '.json_encode($scriptVals).');
+	</script>
+	<?php 
 }
-
 if($required) {
 	$object->getLabel()->addText('<span class="required">*</span>');
 }
