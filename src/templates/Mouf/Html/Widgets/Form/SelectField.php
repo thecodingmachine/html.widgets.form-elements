@@ -1,5 +1,5 @@
 <?php
-	/* @var $object Mouf\Html\Widgets\Form\TextField */
+	/* @var $object Mouf\Html\Widgets\Form\SelectField */
 	if($required) {
 		$object->getLabel()->addText('<span class="required">*</span>');
 	}
