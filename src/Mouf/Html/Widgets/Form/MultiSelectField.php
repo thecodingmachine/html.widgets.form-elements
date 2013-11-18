@@ -367,7 +367,11 @@ class MultiSelectField implements HtmlElementInterface {
 				$select->setChildren($copy);
 			} 
 		}
-		
+		if ($this->isRequired() && !count($this->selects)){
+			$select = new Select();
+			$select->setChildren($this->options);
+			$this->selects[] = $select;
+		}
 		$this->selectTemplate->setChildren($this->options);
 		
 		foreach ($this->selects as $select){

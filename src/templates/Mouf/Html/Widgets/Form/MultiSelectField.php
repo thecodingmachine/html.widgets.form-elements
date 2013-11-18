@@ -8,14 +8,24 @@ if($object->isRequired()) {
 	$object->getLabel()->addText('<span class="required">*</span>');
 }
 $object->getLabel()->toHtml();
+$first = true;
+$showRemove = true;
 foreach ($object->getSelects() as $select){
 	/* @var $select Select */
 	$select->toHtml();
-	$removeElem = $object->getRemoveElement();
-	$removeElem->addDataAttribute('target', $select->getDataAttributes()['id']);
-	$removeElem->addClass("mouf-remove-dd-item");
-	$removeElem->setChildren(array(new HtmlString('remove')));
-	$removeElem->toHtml();
+	if ($first){
+		$first = false;
+		if ($object->isRequired()){
+			$showRemove = false;
+		}
+	}
+	if ($showRemove){
+		$removeElem = $object->getRemoveElement();
+		$removeElem->addDataAttribute('target', $select->getDataAttributes()['id']);
+		$removeElem->addClass("mouf-remove-dd-item");
+		$removeElem->setChildren(array(new HtmlString('remove')));
+		$removeElem->toHtml();
+	}
 }
 
 if($object->getHelpText()) {
