@@ -12,6 +12,7 @@ $first = true;
 $showRemove = true;
 foreach ($object->getSelects() as $select){
 	/* @var $select Select */
+	$select->addClass('mouf-multiple-select-list');
 	$select->toHtml();
 	if ($first){
 		$first = false;
@@ -34,6 +35,7 @@ if($object->getHelpText()) {
 ?>
 <pre style="display: none" id="<?php echo $object->getSelectTemplate()->getDataAttributes()['id']?>">
 <?php
+$object->getSelectTemplate()->addClass('mouf-multiple-select-list');
 $object->getSelectTemplate()->toHtml();
 $removeElem = $object->getRemoveElement();
 $removeElem->addDataAttribute('target', $object->getSelectTemplate()->getDataAttributes()['id']);
