@@ -94,9 +94,11 @@ class MultiSelectField implements HtmlElementInterface {
 		$this->selects = array();
 		if ($values !== null) {
 			$this->values = $values;
-		}
-		foreach ($values as $value){
-			$this->selects[] = new Select();
+			if (count($values)) {
+				foreach ($values as $value){
+					$this->selects[] = new Select();
+				}
+			}
 		}
 		$this->removeElement = new Span();
 		$this->addElement = new Span();
