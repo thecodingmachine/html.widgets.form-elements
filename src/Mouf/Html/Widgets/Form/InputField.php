@@ -1,6 +1,8 @@
 <?php
 namespace Mouf\Html\Widgets\Form;
 
+use Mouf\Html\Widgets\Form\Styles\StylableFormField;
+
 use Mouf\Html\Tags\Label;
 use Mouf\Html\Tags\Input;
 use Mouf\Html\Renderer\Renderable;
@@ -21,6 +23,8 @@ class InputField implements HtmlElementInterface {
 		Renderable::toHtml as toHtmlParent;
 	}
 	
+	use StylableFormField;
+	
 	/**
 	 * @var Label
 	 */
@@ -30,7 +34,7 @@ class InputField implements HtmlElementInterface {
 	 * @var Input
 	 */
 	protected $input;
-
+	
 	/**
 	 * Boolean, true if the input is required, else false
 	 * @var bool

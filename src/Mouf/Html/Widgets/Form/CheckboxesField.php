@@ -1,6 +1,7 @@
 <?php
 namespace Mouf\Html\Widgets\Form;
 
+use Mouf\Html\Widgets\Form\Styles\StylableFormField;
 use Mouf\Html\Tags\Label;
 use Mouf\Html\Renderer\Renderable;
 use Mouf\Utils\Value\ValueInterface;
@@ -24,6 +25,8 @@ class CheckboxesField implements HtmlElementInterface {
 	use Renderable {
 		Renderable::toHtml as toHtmlParent;
 	}
+	
+	use StylableFormField;
 	
 	/**
 	 * @var Label
