@@ -274,7 +274,7 @@ class CheckboxesField implements HtmlElementInterface {
 			if(array_search($check->getInput()->getValue(), $this->values) !== false) {
 				$check->setChecked(true);
 			}
-			$check->setContext('compact');
+			$check->setContext('inline');
 		}
 		$this->toHtmlParent();
 	}

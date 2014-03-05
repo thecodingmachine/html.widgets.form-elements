@@ -12,7 +12,6 @@ trait StylableFormField {
 	
 	
 	protected $layoutStyle;
-	protected $isMultipleField;
 	
 	/**
 	 * @param LayoutStyle $layout
