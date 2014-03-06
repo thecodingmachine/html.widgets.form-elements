@@ -11,7 +11,7 @@ use Mouf\Utils\Value\ValueUtils;
 use Mouf\Html\HtmlElement\HtmlString;
 
 /**
- * A CheckboxField represent a couple of &lt;label&gt; and &lt;input type="text"&gt; fields.
+ * A CheckboxField represent a couple of &lt;label&gt; and &lt;input type="checkbox"&gt; fields.
  * This class is "renderable" so you can overload the way label and input fields are displayed.
  * 
  * @author Marc Teyssier <m.teyssier@thecodingmachine.com>
