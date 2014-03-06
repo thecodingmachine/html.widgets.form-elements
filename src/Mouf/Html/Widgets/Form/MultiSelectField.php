@@ -1,5 +1,7 @@
 <?php
 namespace Mouf\Html\Widgets\Form;
+use Mouf\Html\Widgets\Form\Styles\StylableFormField;
+
 use Mouf\Html\Tags\Span;
 
 use Mouf\Html\Tags\Label;
@@ -25,6 +27,8 @@ class MultiSelectField implements HtmlElementInterface {
 	use Renderable {
 		Renderable::toHtml as toHtmlParent;
 	}
+	
+	use StylableFormField;
 	
 	/**
 	 * @var Label

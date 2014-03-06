@@ -1,6 +1,8 @@
 <?php
 namespace Mouf\Html\Widgets\Form;
 
+use Mouf\Html\Widgets\Form\Styles\StylableFormField;
+
 use Mouf\Html\Tags\Label;
 use Mouf\Html\Tags\Textarea;
 use Mouf\Html\Renderer\Renderable;
@@ -20,6 +22,8 @@ class TextAreaField implements HtmlElementInterface {
 	use Renderable {
 		Renderable::toHtml as toHtmlParent;
 	}
+	
+	use StylableFormField;
 	
 	/**
 	 * @var Label

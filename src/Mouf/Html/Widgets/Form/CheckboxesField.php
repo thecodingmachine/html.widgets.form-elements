@@ -1,6 +1,7 @@
 <?php
 namespace Mouf\Html\Widgets\Form;
 
+use Mouf\Html\Widgets\Form\Styles\StylableFormField;
 use Mouf\Html\Tags\Label;
 use Mouf\Html\Renderer\Renderable;
 use Mouf\Utils\Value\ValueInterface;
@@ -24,6 +25,8 @@ class CheckboxesField implements HtmlElementInterface {
 	use Renderable {
 		Renderable::toHtml as toHtmlParent;
 	}
+	
+	use StylableFormField;
 	
 	/**
 	 * @var Label
@@ -271,7 +274,7 @@ class CheckboxesField implements HtmlElementInterface {
 			if(array_search($check->getInput()->getValue(), $this->values) !== false) {
 				$check->setChecked(true);
 			}
-			$check->setContext('compact');
+			$check->setContext('inline');
 		}
 		$this->toHtmlParent();
 	}
