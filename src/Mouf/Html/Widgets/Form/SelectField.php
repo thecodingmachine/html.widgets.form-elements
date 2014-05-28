@@ -16,7 +16,7 @@ use Mouf\Html\Tags\Option;
 use Mouf\Html\Tags\Optgroup;
 
 /**
- * A SelectMultipleField represent a couple of &lt;label&gt; and &lt;select fields.
+ * A SelectField represent a couple of &lt;label&gt; and &lt;select fields.
  * This class is "renderable" so you can overload the way label and select fields are displayed.
  * 
  * @author Marc Teyssier <m.teyssier@thecodingmachine.com>
@@ -70,10 +70,15 @@ class SelectField implements HtmlElementInterface {
 	 * @param string|ValueInterface $name
 	 * @param string|ValueInterface $value
 	 * @param array<string, string>|ArrayValueInterface|Option[] $options
+	 * @param Select $select The Select tag to use (optionnal). If not specified, a default 'select' tag will be used instead.
 	 */
-	public function __construct($label = null, $name = null, $value = null, $options = array()) {
+	public function __construct($label = null, $name = null, $value = null, $options = array(), Select $select = null) {
 		$this->label = new Label();
-		$this->select = new Select();
+		if ($select == null) {
+			$this->select = new Select();
+		} else {
+			$this->select = $select;
+		}
 		if ($label !== null) {
 			$this->label->addText($label);
 		}
