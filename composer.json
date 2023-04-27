@@ -20,9 +20,9 @@
 		"MIT"
 	],
 	"require" : {
-		"php" : ">=5.4.4",
+		"php" : "^8.0",
 		"mouf/html.tags" : "~1.0",
-		"mouf/html.renderer" : "~1.0"
+		"mouf/html.renderer" : "^2"
 	},
 	"autoload" : {
 		"psr-0" : {
